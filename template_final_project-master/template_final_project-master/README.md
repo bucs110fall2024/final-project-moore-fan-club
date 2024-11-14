@@ -1,18 +1,18 @@
 
 :warning: Everything between << >> needs to be replaced (remove << >> after replacing)
 
-# << Project Title >>
-## CS110 Final Project  << Semester, Year >>
+# OCCT Bus App Redesign
+## CS110 Final Project  Fall, 2024
 
 ## Team Members
 
-<< Jake Steck, Ryan Tsui >>
+Jake Steck, Ryan Tsui
 
 ***
 
 ## Project Description
 
-<< Making a redesigned version of the OCCT bus app/website to make it more simplified, accurate, and easier to use. >>
+Making a redesigned version of the OCCT bus app/website to make it more simplified, accurate, and easier to use.
 
 ***    
 
@@ -30,11 +30,11 @@
 
 ### Features
 
-1. << Main Menu with all bus routes and other functions >>
-2. << Bus schedules for each route >>
-3. << Map function to view bus stop location >>
-4. << ETA function to estimate how far away in mins a bus is from a given stop >>
-5. << Feedback Menu for improvements >>
+1.  Main Menu with all bus routes and other functions 
+2.  Bus schedules for each route 
+3.  Map function to view bus stop location 
+4.  ETA function to estimate how far away in mins a bus is from a given stop 
+5.  Feedback Menu for improvements 
 
 ### Classes
 
