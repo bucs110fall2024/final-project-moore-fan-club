@@ -12,7 +12,7 @@
 
 ## Project Description
 
-<< Give an overview of your project >>
+<< Making a redesigned version of the OCCT bus app/website to make it more simplified, accurate, and easier to use. >>
 
 ***    
 
@@ -30,11 +30,11 @@
 
 ### Features
 
-1. << Feature 1 >>
-2. << Feature 2 >>
-3. << Feature 3 >>
-4. << Feature 4 >>
-5. << Feature 5 >>
+1. << Main Menu with all bus routes and other functions >>
+2. << Bus schedules for each route >>
+3. << Map function to view bus stop location >>
+4. << ETA function to estimate how far away in mins a bus is from a given stop >>
+5. << Feedback Menu for improvements >>
 
 ### Classes
 
