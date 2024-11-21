@@ -1,5 +1,5 @@
 import pygame
 
-class Map:
+class Bus_routes:
     def __init__(self):
         pass
