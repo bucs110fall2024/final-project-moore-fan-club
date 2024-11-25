@@ -2,7 +2,7 @@ import pygame
 import googlemaps
 
 class Map:
-    gmaps = googlemaps.Client(key="YOUR_API_KEY")
+    gmaps = googlemaps.Client(key="AIzaSyCYQ0SQNE5JmptRL-T4LipxdTiKsUTm_zs")
 
     geocode_result = gmaps.geocode('Binghamton University, New York')
 
