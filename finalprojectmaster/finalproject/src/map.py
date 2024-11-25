@@ -4,7 +4,7 @@ import googlemaps
 class Map:
     gmaps = googlemaps.Client(key="AIzaSyCYQ0SQNE5JmptRL-T4LipxdTiKsUTm_zs")
 
-    geocode_result = gmaps.geocode('Binghamton University, New York')
+    geocode_result = gmaps.geocode('Binghamton University, Vestal NY')
 
     print(geocode_result)
     def __init__(self):
