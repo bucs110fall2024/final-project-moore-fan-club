@@ -4,29 +4,30 @@ from src.main_menu import Main_menu
 
 def main():
     pygame.init()
-    pygame.display.set_mode()
-    def mainloop(self):
-        """
-        docstring
-        """
-        while(True): #this can also be a variable instead of just True
-      #1. Handle events
+    width, height = 400, 600
+    screen = pygame.display.set_mode((width, height))
+    pygame.display.set_caption("Pygame Window")
+
+    # Define the main loop
+    def mainloop():
+        running = True
+        while running:
+            # 1. Handle events
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    pygame.quit()
-                    exit()
+                    running = False
 
-      #2. detect collisions and update models
+            # 2. Detect collisions and update models (placeholder for now)
 
-      #3. Redraw next frame
+            # 3. Redraw next frame
+            screen.fill((0, 0, 0))  
+            # Add any drawing code here
 
-      #4. Display next frame
-    pygame.display.flip()
-    #Create an instance on your controller object
-    #Call your mainloop
-    
-    ###### NOTHING ELSE SHOULD GO IN main(), JUST THE ABOVE 3 LINES OF CODE ######
+            # 4. Display next frame
+            pygame.display.flip()
+            pygame.time.wait(2000)
 
-# https://codefather.tech/blog/if-name-main-python/
-if __name__ == '__main__':
-    main()
+        pygame.quit()  # Quit pygame when loop ends
+
+    # Call your mainloop
+    mainloop()
