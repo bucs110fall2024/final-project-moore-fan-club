@@ -1,81 +1,87 @@
 import pygame
 import time
 
-# Bus stop data (bus stops and their times)
-bus_stops = [
-    {"stop": "Digman", "time": "11:00 AM"},
-    {"stop": "Mohawk","time": "12:00 PM"},
-    {"stop": "Rafuse", "time": "1:00 PM"},
-    {"stop": "East Gym", "time": "2:00 PM"},
-]
-
 # Initialize Pygame
 pygame.init()
 
 # Screen dimensions
-width, height = 600, 400
+width, height = 1300, 4300
 screen = pygame.display.set_mode((width, height))
-pygame.display.set_caption("Bus Route Time")
+pygame.display.set_caption("Shuttle Overview")
 
-BLACK = (0, 0, 0)
+# Colors
 WHITE = (255, 255, 255)
-GREEN = (0, 255, 0)
-BLUE = (0, 0, 255)
+BLACK = (0, 0, 0)
+COLORS = { #colors from https://www.rapidtables.com/web/color/RGB_Color.html
+    "CS": (30, 255, 90),  #greenish lime color
+    "DCL": (255, 102, 102),  #light red color
+    "IU": (251, 102, 255),  #majenta color
+    "MS": (0, 255, 250),  #teal color
+    "OC": (255, 255, 51),  #yellow color
+    "RRT": (255, 0, 127),  #darkish pink
+    "UDC": (255, 128, 0),  #plain orange
+    "WS": (0, 0, 255),  #regular blue
+    "Map": (128, 128, 128),  #gray
+    "Status": (224, 224, 224), #plain black
+    "Tips": (224, 224, 224), #lighter grey
+}
+
 # Font
 font = pygame.font.Font(None, 36)
 
-# Clock for managing frame rate
-clock = pygame.time.Clock()
+# Section data (positions and labels)
+sections = [
+    {"label": "CS\nCampus Shuttle", "color": COLORS["CS"], "pos": (50, 50)}, #row 1 column 1
 
-def draw_bus_route(current_stop_index):
-    """Draws the bus route and highlights the current stop."""
-    screen.fill(WHITE)
+    {"label": "DCL\nDowntown Center - Leroy Shuttle", "color": COLORS["DCL"], "pos": (450, 50)}, #row 1 column 2
 
-    # Draw the bus stops
-    y_offset = 50  # Starting vertical position
-    for i, stop in enumerate(bus_stops):
-        stop_text = f"{stop['stop']} - {stop['time']}"
-        color = BLUE if i == current_stop_index else BLACK
-        text_surface = font.render(stop_text, True, color)
-        screen.blit(text_surface, (50, y_offset))
-        y_offset += 50
+    {"label": "IU\nITC - UClub Shuttle", "color": COLORS["IU"], "pos": (850, 50)}, #row 1 column 3
 
-    # Draw the "bus" indicator
-    bus_y = 50 + current_stop_index * 50 - 10
-    pygame.draw.circle(screen, GREEN, (30, bus_y), 10)
+    {"label": "MS\nMain Street Shuttle", "color": COLORS["MS"], "pos": (50, 250)}, #row 2 column 1
 
-    # Update the display
-    pygame.display.flip()
+    {"label": "OC\nOakdale Commons Shuttle", "color": COLORS["OC"], "pos": (450, 250)}, #row 2 column 2
 
+    {"label": "RRT\nRiviera Ridge - Town Sq Mall Shuttle", "color": COLORS["RRT"], "pos": (850, 250)}, #row 2 column 3
+
+    {"label": "UDC\nUniversity Downtown Center Shuttle", "color": COLORS["UDC"], "pos": (50, 450)}, #row 3 column 1
+
+    {"label": "WS\nWestside Shuttle", "color": COLORS["WS"], "pos": (450, 450)}, #row 3 column 2
+
+    {"label": "Map\nSee locations, Track buses", "color": COLORS["Map"], "pos": (850, 450)}, #row 3 column 3
+
+    {"label": "Status\nCheck service status", "color": COLORS["Status"], "pos": (50, 650)}, #row 4 column 1
+
+    {"label": "Tips\nPassenger tips", "color": COLORS["Tips"], "pos": (450, 650)}, #row 4 column 2
+]
+
+# Draw a section
+def draw_section(label, color, pos, size=(250, 100)):
+    pygame.draw.rect(screen, color, (*pos, *size), border_radius=10)
+    lines = label.split("\n")
+    for i, line in enumerate(lines):
+        text = font.render(line, True, BLACK)
+        text_rect = text.get_rect(center=(pos[0] + size[0] // 2, pos[1] + size[1] // 2 + i * 20))
+        screen.blit(text, text_rect)
+
+# Main loop
 def main():
     running = True
-    current_stop_index = 0
-
-    # Time tracking for bus stop progression
-    start_time = time.time()
-    stop_duration = 5  # seconds to stay at each stop for demo purposes
-
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
 
-        # Update the current stop based on time
-        elapsed_time = time.time() - start_time
-        if elapsed_time >= stop_duration:
-            current_stop_index += 1
-            if current_stop_index >= len(bus_stops):
-                current_stop_index = 0  # Reset to the first stop
-            start_time = time.time()
+        # Draw background
+        screen.fill(WHITE)
 
-        # Draw the bus route
-        draw_bus_route(current_stop_index)
+        # Draw all sections
+        for section in sections:
+            draw_section(section["label"], section["color"], section["pos"])
 
-        # Cap the frame rate
-        clock.tick(30)
+        # Update display
+        pygame.display.flip()
 
     pygame.quit()
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
-
