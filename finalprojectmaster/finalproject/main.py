@@ -1,5 +1,6 @@
 import pygame
 import time
+from src import campus_shuttle, DCL, uclub, mainstreet, oakdale_commons, rrt, udc, ws, map, status, tips
 
 # Initialize Pygame
 pygame.init()
@@ -55,7 +56,7 @@ sections = [
 ]
 
 # Draw a section
-def draw_section(label, color, pos, size=(250, 100)):
+def draw_box(label, color, pos, size=(250, 100)):
     pygame.draw.rect(screen, color, (*pos, *size), border_radius=10)
     lines = label.split("\n")
     for i, line in enumerate(lines):
@@ -76,7 +77,7 @@ def main():
 
         # Draw all sections
         for section in sections:
-            draw_section(section["label"], section["color"], section["pos"])
+            draw_box(section["label"], section["color"], section["pos"])
 
         # Update display
         pygame.display.flip()
