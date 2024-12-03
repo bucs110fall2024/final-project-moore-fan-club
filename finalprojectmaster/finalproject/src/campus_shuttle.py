@@ -1,6 +1,6 @@
 import pygame
 
-class Controller:
+class campus_shuttle:
     def __init__(self):
         """
         docstring

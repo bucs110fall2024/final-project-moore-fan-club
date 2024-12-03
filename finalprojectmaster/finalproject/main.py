@@ -2,15 +2,14 @@ import pygame
 import time
 from src import campus_shuttle, DCL, uclub, mainstreet, oakdale_commons, rrt, udc, ws, map, status, tips
 
-# Initialize Pygame
 pygame.init()
 
-# Screen dimensions
+#screen dimensions set to these
 width, height = 1300, 4300
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Shuttle Overview")
 
-# Colors
+#Color constants so it will be easier to call instead of its rgb value
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 COLORS = { #colors from https://www.rapidtables.com/web/color/RGB_Color.html
@@ -30,29 +29,29 @@ COLORS = { #colors from https://www.rapidtables.com/web/color/RGB_Color.html
 # Font
 font = pygame.font.Font(None, 36)
 
-# Section data (positions and labels)
+#created a list with objects of each bus label 
 sections = [
-    {"label": "CS\nCampus Shuttle", "color": COLORS["CS"], "pos": (50, 50)}, #row 1 column 1
+    {"label": "CS\nCampus Shuttle", "color": COLORS["CS"], "pos": (50, 50), "box": campus_shuttle}, #row 1 column 1
 
-    {"label": "DCL\nDowntown Center - Leroy Shuttle", "color": COLORS["DCL"], "pos": (450, 50)}, #row 1 column 2
+    {"label": "DCL\nDowntown Center - Leroy Shuttle", "color": COLORS["DCL"], "pos": (450, 50), "box": DCL}, #row 1 column 2
 
-    {"label": "IU\nITC - UClub Shuttle", "color": COLORS["IU"], "pos": (850, 50)}, #row 1 column 3
+    {"label": "IU\nITC - UClub Shuttle", "color": COLORS["IU"], "pos": (850, 50), "box": uclub}, #row 1 column 3
 
-    {"label": "MS\nMain Street Shuttle", "color": COLORS["MS"], "pos": (50, 250)}, #row 2 column 1
+    {"label": "MS\nMain Street Shuttle", "color": COLORS["MS"], "pos": (50, 250), "box": mainstreet}, #row 2 column 1
 
-    {"label": "OC\nOakdale Commons Shuttle", "color": COLORS["OC"], "pos": (450, 250)}, #row 2 column 2
+    {"label": "OC\nOakdale Commons Shuttle", "color": COLORS["OC"], "pos": (450, 250), "box": oakdale_commons}, #row 2 column 2
 
-    {"label": "RRT\nRiviera Ridge - Town Sq Mall Shuttle", "color": COLORS["RRT"], "pos": (850, 250)}, #row 2 column 3
+    {"label": "RRT\nRiviera Ridge - Town Sq Mall Shuttle", "color": COLORS["RRT"], "pos": (850, 250), "box": rrt}, #row 2 column 3
 
-    {"label": "UDC\nUniversity Downtown Center Shuttle", "color": COLORS["UDC"], "pos": (50, 450)}, #row 3 column 1
+    {"label": "UDC\nUniversity Downtown Center Shuttle", "color": COLORS["UDC"], "pos": (50, 450), "box": udc}, #row 3 column 1
 
-    {"label": "WS\nWestside Shuttle", "color": COLORS["WS"], "pos": (450, 450)}, #row 3 column 2
+    {"label": "WS\nWestside Shuttle", "color": COLORS["WS"], "pos": (450, 450), "box": ws}, #row 3 column 2
 
-    {"label": "Map\nSee locations, Track buses", "color": COLORS["Map"], "pos": (850, 450)}, #row 3 column 3
+    {"label": "Map\nSee locations, Track buses", "color": COLORS["Map"], "pos": (850, 450), "box": map}, #row 3 column 3
 
-    {"label": "Status\nCheck service status", "color": COLORS["Status"], "pos": (50, 650)}, #row 4 column 1
+    {"label": "Status\nCheck service status", "color": COLORS["Status"], "pos": (50, 650), "box": status}, #row 4 column 1
 
-    {"label": "Tips\nPassenger tips", "color": COLORS["Tips"], "pos": (450, 650)}, #row 4 column 2
+    {"label": "Tips\nPassenger tips", "color": COLORS["Tips"], "pos": (450, 650), "box": tips}, #row 4 column 2
 ]
 
 # Draw a section
@@ -64,6 +63,14 @@ def draw_box(label, color, pos, size=(250, 100)):
         text_rect = text.get_rect(center=(pos[0] + size[0] // 2, pos[1] + size[1] // 2 + i * 20))
         screen.blit(text, text_rect)
 
+def display_module(box): #added this function to have it so that if a box is clicked, it will take you to another window
+    screen.fill(BLACK)
+    box_name = box.__name__.split('.')[-1]  #this gets the module name -> from stacked overflow
+    text = font.render(f"This is the {box_name} shuttle !", True, WHITE) #adds the text of the shuttle based on the box name
+    screen.blit(text, (100, 100))
+    pygame.display.flip()
+    pygame.time.wait(2000)  #2000 time to wait for 2 seconds before returning to main menu -> will be adjusted
+
 # Main loop
 def main():
     running = True
@@ -71,15 +78,21 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            elif event.type == pygame.MOUSEBUTTONDOWN: #event listener for mouse button down
+                mouse_pos = pygame.mouse.get_pos()
+                for section in sections:
+                    x, y = section["pos"]
+                    if x <= mouse_pos[0] <= x + 250 and y <= mouse_pos[1] <= y + 100:
+                        display_module(section["box"])  #this elif calls the function for the correct box when clicked on
 
-        # Draw background
+        #main menu background color white
         screen.fill(WHITE)
 
-        # Draw all sections
+        #draw all sections
         for section in sections:
             draw_box(section["label"], section["color"], section["pos"])
 
-        # Update display
+        #update display
         pygame.display.flip()
 
     pygame.quit()
