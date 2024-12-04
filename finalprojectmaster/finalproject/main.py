@@ -54,7 +54,7 @@ sections = [
     {"label": "Tips\nPassenger tips", "color": COLORS["Tips"], "pos": (450, 650), "box": tips}, #row 4 column 2
 ]
 
-# Draw a section
+#drawing each section
 def draw_box(label, color, pos, size=(250, 100)):
     pygame.draw.rect(screen, color, (*pos, *size), border_radius=10)
     lines = label.split("\n")
@@ -71,7 +71,6 @@ def display_module(box): #added this function to have it so that if a box is cli
     pygame.display.flip()
     pygame.time.wait(2000)  #2000 time to wait for 2 seconds before returning to main menu -> will be adjusted
 
-# Main loop
 def main():
     running = True
     while running:
