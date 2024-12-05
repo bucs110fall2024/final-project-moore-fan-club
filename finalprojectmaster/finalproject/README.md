@@ -45,33 +45,28 @@ Test Case 1: Main Menu
 | Step                 |Procedure             |Expected Results                   |
 |----------------------|:--------------------:|----------------------------------:|
 |  1                   | Launch application   |Application opens to main menu     |
-|  2                   | Observe main menu screen   | display changes to count = 1      |
-etc...
+|  2                   | Observe main menu screen   | All bus route, map, status, and tips boxes are displayed |
 
 Test Case 2: Bus Route Navigation
 | Step                 |Procedure             |Expected Results                   |
 |----------------------|:--------------------:|----------------------------------:|
-|  1                   | Run Counter Program  |GUI window appears with count = 0  |
-|  2                   | click count button   | display changes to count = 1      |
-etc...
+|  1                   | Click on each bus route box  |Each bus route box is clickable  |
+|  2                   | Observe navigation to respective route list   | Correctly navigates user to correct bus route list for each respective route  |
 
 Test Case 3: Map Functionality
 | Step                 |Procedure             |Expected Results                   |
 |----------------------|:--------------------:|----------------------------------:|
-|  1                   | Run Counter Program  |GUI window appears with count = 0  |
-|  2                   | click count button   | display changes to count = 1      |
-etc...
+|  1                   | Click map box  |Navigates user to Google Maps API |
+|  2                   | Observe Google Maps API   | Bus routes mapped correctly on Google Maps API  |
 
 Test Case 4: Status Functionality
 | Step                 |Procedure             |Expected Results                   |
 |----------------------|:--------------------:|----------------------------------:|
-|  1                   | Run Counter Program  |GUI window appears with count = 0  |
-|  2                   | click count button   | display changes to count = 1      |
-etc...
+|  1                   | Click status box  |Navigates user to status page |
+|  2                   | Observe status page   | Status box displays updates/news |
 
 Test Case 5: Tips Functionality
 | Step                 |Procedure             |Expected Results                   |
 |----------------------|:--------------------:|----------------------------------:|
-|  1                   | Run Counter Program  |GUI window appears with count = 0  |
-|  2                   | click count button   | display changes to count = 1      |
-etc...
+|  1                   | Click tips box  |Navigates user to tips page |
+|  2                   | Observe tips page   | Tips page displays app usage guide |
